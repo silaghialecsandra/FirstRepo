@@ -13,18 +13,20 @@ namespace FizzBuzz
         {
             Assert.AreEqual("FizzBuzz", Print(45));
             Assert.AreEqual("Buzz", Print(10));
-            Assert.AreEqual("Fizz", Print(9));          
+            Assert.AreEqual("Fizz", Print(9));
+            Assert.AreEqual(null, Print(13));
         }
 
          static string Print(int n)
         {
-            string multi3 = "Fizz", multi5 = "Buzz", multi35 = "FizzBuzz";        
+            string fizz = "Fizz";
+            string buzz = "Buzz";        
             if (n % 3 == 0 && n % 5 == 0)
-                return multi35;
+                return fizz+buzz;
             if (n % 5 == 0)
-                return multi5;            
+                return buzz;            
             if(n % 3 == 0) 
-                return multi3;
+                return fizz;
             else
                 return null;
         }
