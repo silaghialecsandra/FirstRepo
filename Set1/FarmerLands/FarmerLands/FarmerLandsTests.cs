@@ -19,10 +19,8 @@ namespace FarmerLands
 
         double InitialDimensionFormula(int width, long totalDimension)
         {
-            double delta;
-            double length;
-            delta = Math.Pow ((width * width + 4 * totalDimension) , (1.0 / 2.0));
-            length = (- width + delta) / 2;
+            double delta = Math.Pow((width * width + 4 * totalDimension), (1.0 / 2.0)) ;
+            double length = (-width + delta) / 2 ; 
             return length * length;
         }
     }
