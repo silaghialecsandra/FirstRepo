@@ -13,14 +13,16 @@ namespace FarmerLands
         [TestMethod]
         public void InitialDimension()
         {
-            Assert.AreEqual(4, InitialDimensionFormula(1,8));
+            Assert.AreEqual(4, InitialDimensionFormula(1,6));
+           Assert.AreEqual(592,900, InitialDimensionFormula(230,770000));
         }
 
         double InitialDimensionFormula(int width, long totalDimension)
         {
-            double length;
-            length = Math.Pow((totalDimension / width), (1.0 / 3.0));
-            return length * length;
+            double delta,length;
+            delta = Math.Pow((width*width+4*totalDimension),(1.0/2.0));
+            length = (-width+delta) / 2;
+            return length*length;
         }
     }
 }
