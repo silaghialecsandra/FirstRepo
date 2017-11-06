@@ -23,16 +23,23 @@ namespace MoneyDebts
             Assert.AreEqual(1800, Penalty(1500, 32));
         }
 
-        public double Penalty(double rent, int nrOfDays)
-        {
+
+        public double PenaltyFormula(double rent, int nrOfDays, int index)
+        {                       
             int[] penaltyProcents = { 2, 5, 10 };
-            double[] formula = { (rent + ((penaltyProcents[0] * rent) / 100) * nrOfDays), (rent + (((penaltyProcents[1] * rent) / 100) * (nrOfDays - 10))), (rent + (((penaltyProcents[2] * rent) / 100) * (nrOfDays - 30))) } ;
-            if ((nrOfDays >= 1) && (nrOfDays <= 10)) 
-                return formula[0] ;
+            int[] days = { 0, 10, 30 };
+            double formula = (rent + ((penaltyProcents[index] * rent) / 100) * (nrOfDays - days[index])) ;
+            return formula;
+        }
+
+         public double Penalty(double rent, int nrOfDays)
+        {
+            if ((nrOfDays >= 1) && (nrOfDays <= 10))
+                return PenaltyFormula(rent, nrOfDays, 0);
             if ((nrOfDays >= 11) && (nrOfDays <= 30))
-                return formula[1];
+                return PenaltyFormula(rent, nrOfDays, 1);
             if ((nrOfDays >= 31) && (nrOfDays <= 40))
-                return formula[2]; 
+                return PenaltyFormula(rent, nrOfDays, 2);
             return rent;
         }
     }
