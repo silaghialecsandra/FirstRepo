@@ -16,22 +16,24 @@ namespace MoneyDebts
         [TestMethod]
         public void TotalPayment()
         {
+            Assert.AreEqual(800, Penalty(800, 0));
             Assert.AreEqual(1020, Penalty(1000, 1));
             Assert.AreEqual(836.4, Penalty(820, 1));
-            Assert.AreEqual(1050, Penalty(1000, 11));
-            Assert.AreEqual(1100, Penalty(1000, 31));
-            Assert.AreEqual(1800, Penalty(1500, 32));
+          //  Assert.AreEqual(1050, Penalty(1000, 11));
+         //   Assert.AreEqual(1100, Penalty(1000, 31));
+         //   Assert.AreEqual(1800, Penalty(1500, 32));
         }
 
-        public double Penalty(double Rent, int NrOfDays)
+        public double Penalty(double rent, int nrOfDays)
         {
-            if ((NrOfDays >= 1) && (NrOfDays <= 10))
-                return Rent + (((2 * Rent) / 100) * NrOfDays);
-            if ((NrOfDays >= 11) && (NrOfDays <= 30))
-                return Rent + (((5 * Rent) / 100) * (NrOfDays - 10));
-            if ((NrOfDays >= 31) && (NrOfDays <= 40))
-                return Rent + (((10 * Rent) / 100) * (NrOfDays - 30));
-            return 0;
+            int penaltyProcents = 2;
+            if ((nrOfDays >= 1) && (nrOfDays <= 10))
+                return rent + (((penaltyProcents * rent) / 100) * nrOfDays);
+           /* if ((nrOfDays >= 11) && (nrOfDays <= 30))
+                return rent + (((5 * rent) / 100) * (nrOfDays - 10));
+            if ((nrOfDays >= 31) && (nrOfDays <= 40))
+                return rent + (((10 * rent) / 100) * (nrOfDays - 30)); */
+            return rent;
         }
     }
 }
