@@ -24,20 +24,20 @@ namespace MoneyDebts
         }
 
 
-        public double PenaltyFormula(double rent, int nrOfDays, int penaltyProcents, int days)
+        public double PenaltyFormula(double rent, int penaltyProcents, int penaltyDays)
         {                       
-            double formula = (rent + ((penaltyProcents * rent) / 100) * (nrOfDays - days)) ;
+            double formula = (rent + ((penaltyProcents * rent) / 100) * penaltyDays) ;
             return formula;
         }
 
-         public double Penalty(double rent, int nrOfDays)
+         public double Penalty(double rent, int nrDaysLate)
         {
-            if ((nrOfDays >= 1) && (nrOfDays <= 10))
-                return PenaltyFormula(rent, nrOfDays, 2, 0);
-            if ((nrOfDays >= 11) && (nrOfDays <= 30))
-                return PenaltyFormula(rent, nrOfDays, 5, 10);
-            if ((nrOfDays >= 31) && (nrOfDays <= 40))
-                return PenaltyFormula(rent, nrOfDays, 10, 30);
+            if ((nrDaysLate >= 1) && (nrDaysLate <= 10))
+                return PenaltyFormula(rent, 2, nrDaysLate);
+            if ((nrDaysLate >= 11) && (nrDaysLate <= 30))
+                return PenaltyFormula(rent, 5, nrDaysLate - 10);
+            if ((nrDaysLate >= 31) && (nrDaysLate <= 40))
+                return PenaltyFormula(rent, 10, nrDaysLate - 30);
             return rent;
         }
     }
