@@ -30,7 +30,7 @@ namespace MoneyDebts
             return formula;
         }
 
-         public double Penalty(double rent, int nrDaysLate)
+        public double PenaltyInterval(double rent, int nrDaysLate)
         {
             if ((nrDaysLate >= 1) && (nrDaysLate <= 10))
                 return PenaltyFormula(rent, 2, nrDaysLate);
@@ -39,6 +39,11 @@ namespace MoneyDebts
             if ((nrDaysLate >= 31) && (nrDaysLate <= 40))
                 return PenaltyFormula(rent, 10, nrDaysLate - 30);
             return rent;
+        }
+
+        public double Penalty(double rent, int nrDaysLate)
+        {
+            return PenaltyInterval(rent, nrDaysLate);
         }
     }
 }
