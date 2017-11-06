@@ -30,21 +30,19 @@ namespace MoneyDebts
             return formula;
         }
 
-        bool Interval(int number, int leftNr, int rightNr)
+        bool IsInInterval(int number, int start, int end)
         {
-            if ((number >=leftNr) && (number <= rightNr))
-                    return true;
-            return false;
+           return (number >= start) && (number <= end) ;
         }
 
-        public double Penalty(double rent, int nrDaysLate)
+        public double Penalty(double rent, int daysLate)
         {
-            if (Interval(nrDaysLate, 1, 10))
-                return PenaltyFormula(rent, 2, nrDaysLate);
-            if (Interval(nrDaysLate, 11, 30))
-                return PenaltyFormula(rent, 5, nrDaysLate - 10);
-            if (Interval(nrDaysLate, 31, 40))
-                return PenaltyFormula(rent, 10, nrDaysLate - 30);
+            if (IsInInterval(daysLate, 1, 10))
+                return PenaltyFormula(rent, 2, daysLate);
+            if (IsInInterval(daysLate, 11, 30))
+                return PenaltyFormula(rent, 5, daysLate - 10);
+            if (IsInInterval(daysLate, 31, 40))
+                return PenaltyFormula(rent, 10, daysLate - 30);
             return rent;
         }
     }
