@@ -20,6 +20,7 @@ namespace MoneyDebts
             Assert.AreEqual(836.4, Penalty(820, 1));
             Assert.AreEqual(1050, Penalty(1000, 11));
             Assert.AreEqual(1100, Penalty(1000, 31));
+            Assert.AreEqual(1800, Penalty(1500, 32));
         }
 
         public double Penalty(double Rent, int NrOfDays)
