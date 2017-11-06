@@ -18,21 +18,21 @@ namespace MoneyDebts
         {
             Assert.AreEqual(800, Penalty(800, 0));
             Assert.AreEqual(1020, Penalty(1000, 1));
-            Assert.AreEqual(836.4, Penalty(820, 1));
-          //  Assert.AreEqual(1050, Penalty(1000, 11));
-         //   Assert.AreEqual(1100, Penalty(1000, 31));
-         //   Assert.AreEqual(1800, Penalty(1500, 32));
+            Assert.AreEqual(836.4, Penalty(820, 1));          
+            Assert.AreEqual(1100, Penalty(1000, 31));
+            Assert.AreEqual(1800, Penalty(1500, 32));
         }
 
         public double Penalty(double rent, int nrOfDays)
         {
-            int penaltyProcents = 2;
-            if ((nrOfDays >= 1) && (nrOfDays <= 10))
-                return rent + (((penaltyProcents * rent) / 100) * nrOfDays);
-           /* if ((nrOfDays >= 11) && (nrOfDays <= 30))
-                return rent + (((5 * rent) / 100) * (nrOfDays - 10));
+            int[] penaltyProcents = { 2, 5, 10 };
+            double[] formula = { (rent + ((penaltyProcents[0] * rent) / 100) * nrOfDays), (rent + (((penaltyProcents[1] * rent) / 100) * (nrOfDays - 10))), (rent + (((penaltyProcents[2] * rent) / 100) * (nrOfDays - 30))) } ;
+            if ((nrOfDays >= 1) && (nrOfDays <= 10)) 
+                return formula[0] ;
+            if ((nrOfDays >= 11) && (nrOfDays <= 30))
+                return formula[1];
             if ((nrOfDays >= 31) && (nrOfDays <= 40))
-                return rent + (((10 * rent) / 100) * (nrOfDays - 30)); */
+                return formula[2]; 
             return rent;
         }
     }
