@@ -13,12 +13,13 @@ namespace RomanDigits
         [TestMethod]
         public void ConversionTest()
         {
-            /*Assert.AreEqual("LI", ConvertNumberToRoman(51));
+            Assert.AreEqual("", ConvertNumberToRoman(0));
             Assert.AreEqual("XIX", ConvertNumberToRoman(19));
-            Assert.AreEqual("C", ConvertNumberToRoman(100));
-            Assert.AreEqual("XCIX", ConvertNumberToRoman(99));
             Assert.AreEqual("XXVIII", ConvertNumberToRoman(28));
-            Assert.AreEqual("LXXXIX", ConvertNumberToRoman(89));*/
+            Assert.AreEqual("LI", ConvertNumberToRoman(51));
+            Assert.AreEqual("LXXXIX", ConvertNumberToRoman(89));
+            Assert.AreEqual("XCIX", ConvertNumberToRoman(99));
+            Assert.AreEqual("C", ConvertNumberToRoman(100));         
         }
 
         string ConvertNumberToRoman(int number)
