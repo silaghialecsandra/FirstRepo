@@ -17,11 +17,8 @@ namespace Chessboard
         int SquaresFormula( int dimension)
         {
             int sum = 0;
-            while (dimension >= 1)
-            {
-                sum = sum + ((dimension * dimension) + ((dimension - 1) * (dimension - 1)));
-                dimension = dimension - 2;
-            }
+            for(int index = 1; index <= dimension; ++index)
+                sum += index * index ;
             return sum;
         }
     }
