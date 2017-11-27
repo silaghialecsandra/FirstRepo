@@ -20,8 +20,24 @@ namespace Pangram
 
         static bool IsPangram(string text)
         {
-            string alphabet = "abcdefghijklmnopqrstuvwxyz";
-            return alphabet.All(text.ToLower().Contains);
+            bool[] existingLetters = new bool[26];
+            int totalLetters = 0;
+            text = text.ToLower();
+            if (text.Length < 26)
+                return false;
+            foreach (char c in text)
+            {
+                if (c >= 'a' && c <= 'z')
+                {
+                    int index = c - 97;
+                    if (!existingLetters[index])
+                    {
+                        existingLetters[index] = true;
+                        totalLetters++;
+                    }
+                }
+            }
+            return totalLetters == 26;
         }
     }
 }
