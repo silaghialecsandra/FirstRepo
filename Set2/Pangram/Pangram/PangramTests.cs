@@ -29,7 +29,7 @@ namespace Pangram
             {
                 if (c >= 'a' && c <= 'z')
                 {
-                    int index = c - 97;
+                    int index = c - 'a';
                     if (!existingLetters[index])
                     {
                         existingLetters[index] = true;
