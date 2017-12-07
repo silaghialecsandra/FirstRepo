@@ -20,12 +20,13 @@ namespace Prefix
         static string Prefix(string firstString, string secondString)
         {
             int count = 0;
+            //for (int i = 0; i < firstString.Length && firstString[i] == secondString[i]; i++)
+            //count++;
             for (int i = 0; i < firstString.Length; i++)
             {
-                if (firstString[i] == secondString[i])
-                    count++;
-                else
+                if (firstString[i] != secondString[i])
                     break;
+                count++;
             }
             return firstString.Substring(0, count);
         }
