@@ -12,19 +12,22 @@ namespace Prefix
         public void TestMethod1()
         {
             Assert.AreEqual("aaa",Prefix("aaab", "aaaabbaa"));
+            Assert.AreEqual("", Prefix("baaab", "aaaabbaa"));
+            Assert.AreEqual("abcd", Prefix("abcd", "abcddaa"));
+            Assert.AreEqual("d", Prefix("dvaaab", "daaaabbaa"));
         }
 
-        public char[] Prefix(string firstString, string secondString)
+        static string Prefix(string firstString, string secondString)
         {
-            char[] prefix = new char[10];
+            int count = 0;
             for (int i = 0; i < firstString.Length; i++)
             {
                 if (firstString[i] == secondString[i])
-                    prefix[i] = firstString[i];
+                    count++;
                 else
                     break;
             }
-            return prefix;
+            return firstString.Substring(0, count);
         }
     }
 }
