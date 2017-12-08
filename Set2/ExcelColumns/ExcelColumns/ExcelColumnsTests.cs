@@ -15,6 +15,20 @@ namespace ExcelColumns
         [TestMethod]
         public void TestMethod1()
         {
+            Assert.AreEqual('B', Columns(2));
+        }
+
+        char Columns(int numberColumn)
+        {
+            int index = 1;
+            for (char i = 'A'; i <= 'Z'; i++)
+            {
+                if (numberColumn == index)
+                    return i;
+                else
+                    index++;
+            }
+            return ' ';
         }
     }
 }
