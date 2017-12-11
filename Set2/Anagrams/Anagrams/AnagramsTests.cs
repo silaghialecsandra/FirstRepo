@@ -16,9 +16,8 @@ namespace Anagrams
         {
             Assert.AreEqual(0, TotalAnagrams("a"));
             Assert.AreEqual(2, TotalAnagrams("al"));
-            Assert.AreEqual(12,TotalAnagrams("ale"));                        
-            Assert.AreEqual(288, TotalAnagrams("alex"));
-            Assert.AreEqual(288, TotalAnagrams("aaab"));
+            Assert.AreEqual(6,TotalAnagrams("ale"));                        
+            Assert.AreEqual(20, TotalAnagrams("aaabc"));
         }
 
         int Factorial(int number)
