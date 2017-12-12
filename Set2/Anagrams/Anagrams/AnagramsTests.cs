@@ -36,20 +36,11 @@ namespace Anagrams
             return count;
         }
 
-        void LettersFromWord(string word, int[] values)
-        {
-            for (char c = 'a'; c <= 'z'; c++)
-                for (int index2 = 0; index2 < word.Length; index2++)
-                    if (c == word[index2])
-                    {
-                        values[c - 96] = CountChar(word, c);
-                    }
-        }
-
-        int[] CountLetters(string word)
+        int[] LettersFromWord(string word)
         {
             int[] values = new int[26];
-            LettersFromWord(word, values);
+            for (char c = 'a'; c < 'z'; c++)
+                values[c - 96] = CountChar(word, c);
             return values;
         }
 
@@ -64,7 +55,7 @@ namespace Anagrams
 
         int AllAnagrams(string word)
         {
-            int[] values = CountLetters(word);
+            int[] values = LettersFromWord(word);
             return (word.Length == 1) ? 0 : (Factorial(word.Length) / FactorialsProduct(values));
         }
     }
