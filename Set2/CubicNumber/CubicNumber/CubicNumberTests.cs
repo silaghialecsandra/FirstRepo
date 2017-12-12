@@ -18,6 +18,7 @@ namespace CubicNumber
             Assert.AreEqual(942, Cubic(4));
         }
 
+
         int Cubic(int number)
         {
             int cubic = 0;
