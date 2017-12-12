@@ -16,7 +16,7 @@ namespace Anagrams
         {
             Assert.AreEqual(0, TotalAnagrams("a"));
             Assert.AreEqual(2, TotalAnagrams("al"));
-            Assert.AreEqual(6,TotalAnagrams("ale"));                        
+            Assert.AreEqual(6, TotalAnagrams("ale"));
             Assert.AreEqual(20, TotalAnagrams("aaabc"));
             Assert.AreEqual(4, TotalAnagrams("aaba"));
         }
@@ -41,6 +41,12 @@ namespace Anagrams
             }
             return values;
         }
+
+        int TotalAnagrams(string word)
+        {
+            return (word.Length == 1) ? 0 : AnagramsFormula(word);
+        }
+
         int AnagramsFormula(string word)
         {
             int[] values = new int[26];
