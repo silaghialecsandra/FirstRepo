@@ -14,11 +14,11 @@ namespace Anagrams
         [TestMethod]
         public void Anagrams()
         {
-            Assert.AreEqual(0, TotalAnagramsFormula("a"));
-            Assert.AreEqual(2, TotalAnagramsFormula("al"));
-            Assert.AreEqual(6,TotalAnagramsFormula("ale"));                        
-            Assert.AreEqual(20, TotalAnagramsFormula("aaabc"));
-            Assert.AreEqual(4, TotalAnagramsFormula("aaba"));
+            Assert.AreEqual(0, TotalAnagrams("a"));
+            Assert.AreEqual(2, TotalAnagrams("al"));
+            Assert.AreEqual(6,TotalAnagrams("ale"));                        
+            Assert.AreEqual(20, TotalAnagrams("aaabc"));
+            Assert.AreEqual(4, TotalAnagrams("aaba"));
         }
 
         int Factorial(int number)
@@ -42,18 +42,21 @@ namespace Anagrams
             return values;
         }
 
-        int TotalAnagramsFormula(string word)
+        int AnagramsFormula(string word)
         {
-            int[] values ;
+            int[] values = new int[26];
             values = CountLetters(word);
-            if (word.Length == 1)
-                return 0;
             int lettersFactorial = 1;
             int totalAnagrams = Factorial(word.Length);
             for (int index = 0; index < values.Length; index++)
                 if (values[index] != 0)
                     lettersFactorial = lettersFactorial * (Factorial(values[index]));
             return totalAnagrams / lettersFactorial;
+        }
+
+       int TotalAnagrams(string word)
+        {
+            return (word.Length == 1) ? 0 : AnagramsFormula(word);
         }
     }
 }
