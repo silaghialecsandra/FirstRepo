@@ -26,20 +26,34 @@ namespace Anagrams
             return (number <= 1) ? 1 : number * Factorial(number - 1);
         }
 
-        int[] CountLetters(string word)
+        void LettersFromWord(string word, int[] values)
         {
-            int[] values = new int[26];
-            for (int index1 = 0; index1 < 26; index1++)
+            for (char c = 'a'; c <= 'z'; c++)
             {
                 int count = 1;
                 for (int index2 = 0; index2 < word.Length; index2++)
-                    if ((char)('a' + index1) == word[index2])
+                    if (c == word[index2])
                     {
-                        values[index1] = count;
+                        values[c - 96] = count;
                         count++;
                     }
             }
+        }
+
+        int[] CountLetters(string word)
+        {
+            int[] values = new int[26];
+            LettersFromWord(word, values);
             return values;
+        }
+
+        int LettersFactorial(string word, int[] values)
+        {
+            int lettersFactorial = 1;
+            for (int index = 0; index < values.Length; index++)
+                if (values[index] != 0)
+                    lettersFactorial = lettersFactorial * (Factorial(values[index]));
+            return lettersFactorial;
         }
 
         int TotalAnagrams(string word)
@@ -51,11 +65,8 @@ namespace Anagrams
         {
             int[] values = new int[26];
             values = CountLetters(word);
-            int lettersFactorial = 1;
+            int lettersFactorial = LettersFactorial(word, values);
             int totalAnagrams = Factorial(word.Length);
-            for (int index = 0; index < values.Length; index++)
-                if (values[index] != 0)
-                    lettersFactorial = lettersFactorial * (Factorial(values[index]));
             return totalAnagrams / lettersFactorial;
         }
     }
