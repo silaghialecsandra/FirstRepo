@@ -14,11 +14,11 @@ namespace Anagrams
         [TestMethod]
         public void Anagrams()
         {
-            Assert.AreEqual(0, TotalAnagrams("a"));
-            Assert.AreEqual(2, TotalAnagrams("al"));
-            Assert.AreEqual(6, TotalAnagrams("ale"));
-            Assert.AreEqual(20, TotalAnagrams("aaabc"));
-            Assert.AreEqual(4, TotalAnagrams("aaba"));
+            Assert.AreEqual(0, AllAnagrams("a"));
+            Assert.AreEqual(2, AllAnagrams("al"));
+            Assert.AreEqual(6, AllAnagrams("ale"));
+            Assert.AreEqual(20, AllAnagrams("aaabc"));
+            Assert.AreEqual(4, AllAnagrams("aaba"));
         }
 
         int Factorial(int number)
@@ -26,18 +26,24 @@ namespace Anagrams
             return (number <= 1) ? 1 : number * Factorial(number - 1);
         }
 
+
+        int CountChar(string word, char c)
+        {
+            int count = 0;
+            for (int index = 0; index < word.Length; index++)
+                if (c == word[index])
+                    count++;
+            return count;
+        }
+
         void LettersFromWord(string word, int[] values)
         {
             for (char c = 'a'; c <= 'z'; c++)
-            {
-                int count = 1;
                 for (int index2 = 0; index2 < word.Length; index2++)
                     if (c == word[index2])
                     {
-                        values[c - 96] = count;
-                        count++;
+                        values[c - 96] = CountChar(word, c);
                     }
-            }
         }
 
         int[] CountLetters(string word)
@@ -47,7 +53,7 @@ namespace Anagrams
             return values;
         }
 
-        int LettersFactorial(string word, int[] values)
+        int FactorialsProduct(int[] values)
         {
             int lettersFactorial = 1;
             for (int index = 0; index < values.Length; index++)
@@ -56,18 +62,10 @@ namespace Anagrams
             return lettersFactorial;
         }
 
-        int TotalAnagrams(string word)
+        int AllAnagrams(string word)
         {
-            return (word.Length == 1) ? 0 : AnagramsFormula(word);
-        }
-
-        int AnagramsFormula(string word)
-        {
-            int[] values = new int[26];
-            values = CountLetters(word);
-            int lettersFactorial = LettersFactorial(word, values);
-            int totalAnagrams = Factorial(word.Length);
-            return totalAnagrams / lettersFactorial;
+            int[] values = CountLetters(word);
+            return (word.Length == 1) ? 0 : (Factorial(word.Length) / FactorialsProduct(values));
         }
     }
 }
