@@ -26,7 +26,7 @@ namespace Anagrams
             return (number <= 1) ? 1 : number * Factorial(number - 1);
         }
 
-        static int[] CountLetters(string word)
+        int[] CountLetters(string word)
         {
             int[] values = new int[26];
             for (int index1 = 0; index1 < 26; index1++)
