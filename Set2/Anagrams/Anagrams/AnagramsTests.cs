@@ -41,12 +41,6 @@ namespace Anagrams
             }
             return values;
         }
-
-       int TotalAnagrams(string word)
-        {
-            return (word.Length == 1) ? 0 : AnagramsFormula(word);
-        }
-
         int AnagramsFormula(string word)
         {
             int[] values = new int[26];
@@ -58,6 +52,5 @@ namespace Anagrams
                     lettersFactorial = lettersFactorial * (Factorial(values[index]));
             return totalAnagrams / lettersFactorial;
         }
-
     }
 }
