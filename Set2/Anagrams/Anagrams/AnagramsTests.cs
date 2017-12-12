@@ -18,6 +18,7 @@ namespace Anagrams
             Assert.AreEqual(2, TotalAnagrams("al"));
             Assert.AreEqual(6,TotalAnagrams("ale"));                        
             Assert.AreEqual(20, TotalAnagrams("aaabc"));
+            Assert.AreEqual(4, TotalAnagrams("aaba"));
         }
 
         int Factorial(int number)
@@ -29,21 +30,26 @@ namespace Anagrams
         {
             if (word.Length == 1)
                 return 0;
-            int lettersFactorial = 1;
-            int count = 1;
+            string allLetters = "abcdefghijklmnopqrstuvwxyz";
+            int[] values = new int[26];
+            int lettersFactorial = 1;            
             int totalAnagrams = Factorial(word.Length);
-            for (int index = 0; index < word.Length - 1; index++)
+            for (int index1 = 0; index1 < allLetters.Length; index1++)
             {
-                if (word[index] == word[index + 1])
+                int count = 1;
+                for (int index2 = 0; index2 < word.Length; index2++)
                 {
-                    count++;
-                }
-                else
-                {
-                    lettersFactorial = lettersFactorial * (Factorial(count));
-                    count = 1;
+                    if (allLetters[index1] == word[index2])
+                    {
+                        values[index1] = count;
+                        count++;
+                    }
+
                 }
             }
+            for (int index = 0; index < values.Length; index++)
+                if (values[index] != 0)
+                    lettersFactorial = lettersFactorial * (Factorial(values[index]));
             return totalAnagrams / lettersFactorial;
         }
     }
