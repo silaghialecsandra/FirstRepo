@@ -26,8 +26,9 @@ namespace Anagrams
             return (number <= 1) ? 1 : number * Factorial(number - 1);
         }
 
-        void CountLetters(string word, int[] values)
+        static int[] CountLetters(string word)
         {
+            int[] values = new int[26];
             for (int index1 = 0; index1 < 26; index1++)
             {
                 int count = 1;
@@ -38,12 +39,13 @@ namespace Anagrams
                         count++;
                     }
             }
+            return values;
         }
 
         int TotalAnagramsFormula(string word)
         {
-            int[] values = new int[26];
-            CountLetters(word, values);
+            int[] values ;
+            values = CountLetters(word);
             if (word.Length == 1)
                 return 0;
             int lettersFactorial = 1;
