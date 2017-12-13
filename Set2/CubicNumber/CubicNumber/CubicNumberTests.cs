@@ -16,6 +16,7 @@ namespace CubicNumber
             Assert.AreEqual(442, Cubic(2));
             Assert.AreEqual(692, Cubic(3));
             Assert.AreEqual(942, Cubic(4));
+            Assert.AreEqual(1192, Cubic(5));
         }
 
 

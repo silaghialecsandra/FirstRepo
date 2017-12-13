@@ -40,7 +40,7 @@ namespace Anagrams
         {
             int[] values = new int[26];
             for (char c = 'a'; c < 'z'; c++)
-                values[c - 96] = CountChar(word, c);
+                values[c - 'a'] = CountChar(word, c);
             return values;
         }
 
