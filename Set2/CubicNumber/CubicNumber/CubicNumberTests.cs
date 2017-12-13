@@ -22,20 +22,19 @@ namespace CubicNumber
 
         int Cubic(int number)
         {
-            int cubic = 0;
-            int kNumber = 1;
+            /*int kNumber = 1;
             for (int index = 192; index < Int32.MaxValue; index++)
             {
-                if (((index * index * index) % 1000) == 888)
+                if ((index * index * index) % 1000 == 888)
+                {
                     if (number == kNumber)
-                    {
-                        cubic = index;
-                        break;
-                    }
-                    else
-                        kNumber++;
+                        return index;
+                    kNumber++;
+                }
+
             }
-            return cubic;
+            return 0;*/
+            return 192 + (250 * (number - 1));
         }
     }
 }
