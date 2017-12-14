@@ -15,10 +15,13 @@ namespace LotoProbability
         [TestMethod]
         public void LotoProbability()
         {
-            Assert.AreEqual(0.436f, Loto(1));
-            Assert.AreEqual(0.413f, Loto(2));
-            Assert.AreEqual(0.132f, Loto(3));
-            Assert.AreEqual(0.099f, Loto(4));
+            Assert.AreEqual(0.004f, LotoProbabilityFormula(10, 5, 1));
+            Assert.AreEqual(0.099f, LotoProbabilityFormula(10, 5, 2));
+            Assert.AreEqual(0.397f, LotoProbabilityFormula(10, 5, 3));
+            Assert.AreEqual(0.077f, LotoProbabilityFormula(20, 6, 1));
+            Assert.AreEqual(0.31f, LotoProbabilityFormula(20, 6, 2));
+            Assert.AreEqual(0.387f, LotoProbabilityFormula(20, 6, 3));
+
         }
 
          long Factorial(long number)
@@ -26,47 +29,25 @@ namespace LotoProbability
             return (number <= 1) ? 1 : number * Factorial(number - 1);
         }
 
-         float FirstCategory()
+         float AllCombinations(int allNumbers, int chosenNumbers)
         {
-            //P1=(C6 0 * C 43 6)/C 49 6
-            //return (Factorial(43) / (Factorial(6) * Factorial(37))) / (Factorial(49) / (Factorial(6) * Factorial(43)));
-            return (float)(Math.Round((double)(435.461f / 998.844f), 3));
+            return ((Factorial(allNumbers) / (Factorial(chosenNumbers) * Factorial(allNumbers - chosenNumbers))));
         }
 
-        float SecondCategory()
+        float CategoryCombinations(int chosenNumbers, int numbersOfCategory)
         {
-            //P2=(C6 1 * C43 5)/C49 6
-            //return (Factorial(43) / (Factorial(5) * Factorial(38))) / (Factorial(49) / (Factorial(6) * Factorial(43)));            
-            return (float)(Math.Round((double)(68.757f / 166.474f), 3));
-
+            return (Factorial(chosenNumbers) / (Factorial(numbersOfCategory - 1) * Factorial(chosenNumbers - (numbersOfCategory - 1))));
         }
 
-         float ThirdCategory()
+        float OtherCombinations(int allNumbers, int chosenNumbers, int numbersOfCategory)
         {
-            //P3=(C6 2 * C43 4)/C49 6
-            //return ((15 * Factorial(43) / (Factorial(4) * Factorial(39))) / (Factorial(49) / (Factorial(6) * Factorial(43))));
-            return (float)(Math.Round((double)(44.075f / 332.948f), 3));
+            return (Factorial(allNumbers - chosenNumbers) / (Factorial(chosenNumbers - (numbersOfCategory - 1)) * Factorial((allNumbers - chosenNumbers) - (chosenNumbers - (numbersOfCategory - 1)))));
         }
 
-         float FirstCategory5of40()
+        float LotoProbabilityFormula(int allNumbers, int chosenNumbers, int numbersOfCategory)
         {
-            //P1=(C5 0 * C 35 5)/C40 5
-            // return (Factorial(35) / (Factorial(5) * Factorial(30))) / (Factorial(40) / (Factorial(4) * Factorial(35)));
-            return (float)(Math.Round((double)(324.632f / 3290.040f), 3));
-        }
-
-         float Loto(int category)
-        {
-            if (category == 1)
-                return FirstCategory();
-            if (category == 2)
-                return SecondCategory();
-            if (category == 3)
-                return ThirdCategory();
-            if (category == 4)
-                return FirstCategory5of40();
-            return 23;
-
+            float probability = (CategoryCombinations(chosenNumbers, numbersOfCategory) * OtherCombinations(allNumbers, chosenNumbers, numbersOfCategory)) / AllCombinations(allNumbers, chosenNumbers);
+            return (float)(Math.Round((double)(probability), 3));
         }
     }
 }
