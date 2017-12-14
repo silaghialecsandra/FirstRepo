@@ -15,10 +15,7 @@ namespace LotoProbability
         [TestMethod]
         public void LotoProbability()
         {
-            Assert.AreEqual(0.436, LotoProbabilityFormula(49,6,1));
-            Assert.AreEqual(0.413, LotoProbabilityFormula(49,6,2));
-            Assert.AreEqual(0.132, LotoProbabilityFormula(49,6,3));
-            Assert.AreEqual(0.493, LotoProbabilityFormula(40,5,1));
+            Assert.AreEqual(0.0009686197, LotoProbabilityFormula(49,6,3));
         }
 
         double Factorial(int number)
@@ -33,18 +30,18 @@ namespace LotoProbability
 
         double CategoryCombinations(int chosenNumbers, int numbersOfCategory)
         {
-            return (Factorial(chosenNumbers) / (Factorial(numbersOfCategory - 1) * Factorial(chosenNumbers - (numbersOfCategory - 1))));
+            return (Factorial(chosenNumbers) / (Factorial(chosenNumbers - (numbersOfCategory - 1)) * Factorial(chosenNumbers - (chosenNumbers - (numbersOfCategory - 1)))));
         }
 
         double OtherCombinations(int allNumbers, int chosenNumbers, int numbersOfCategory)
         {
-            return (Factorial(allNumbers - chosenNumbers) / (Factorial(chosenNumbers - (numbersOfCategory - 1)) * Factorial((allNumbers - chosenNumbers) - (chosenNumbers - (numbersOfCategory - 1)))));
+            return (Factorial(allNumbers - chosenNumbers) / (Factorial(numbersOfCategory - 1) * Factorial((allNumbers - chosenNumbers) - (numbersOfCategory - 1))));
         }
 
         double LotoProbabilityFormula(int allNumbers, int chosenNumbers, int numbersOfCategory)
         {
             double probability = (CategoryCombinations(chosenNumbers, numbersOfCategory) * OtherCombinations(allNumbers, chosenNumbers, numbersOfCategory)) / AllCombinations(allNumbers, chosenNumbers);
-            return (double)(Math.Round((double)(probability), 3));
+            return (double)(Math.Round((double)(probability), 10));
         }
     }
 }
